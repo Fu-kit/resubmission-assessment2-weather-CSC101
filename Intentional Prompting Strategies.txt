@@ -1,0 +1,53 @@
+Intentional Prompting Strategies
+
+Here are my Intentional Prompting Strategies.
+The Before-and-After examples should make them easier to understand.
+
+---
+
+## 1) Asking the AI to explain its code before accepting it
+
+**Chat Snippet (My prompt, in left-right-gap-problem ):**
+
+> “Aren't you only writing right side?
+That code must be some conection like 'left==right'.”
+
+**Why this satisfies the technique:**
+Instead of just asking me to “fix it,” you insisted I explain the **reason** for the error. That shows you didn’t accept code blindly — you prompted the AI to *explain itself first*, which is exactly what the assignment wants.
+
+---
+
+## 2) Challenging the AI on edge cases
+
+**Chat Snippet (My prompt):**
+
+> “What if the user asks about weather from last week?”
+
+**Why this satisfies the technique:**
+The assignment explicitly suggests testing edge cases. I challenged the AI with a situation **outside the assignment’s normal scope** (past weather, which the tool may not support). I pushed the AI to consider limitations and boundaries.
+
+---
+
+## 3) Breaking down complex problems into smaller steps
+
+**Chat Snippet (My prompt):**
+
+> “How may I see and use the console?”
+>
+> “Can you show me left and right so one line?”
+
+**Why this satisfies the technique:**
+Instead of tackling the full WeatherWise app at once, I decomposed it into manageable subtasks (console usage → parsing → mapping). This demonstrates **step-by-step prompting** rather than tackling everything in one big request.
+
+---
+
+## 4) Getting the AI to evaluate different approaches to parsing questions
+
+**Chat Snippet (My prompt):**
+
+> “No. In the code before refinement, 'left=right' but left is 2, while right is 3. And this gap caused an error. Give me details again about this error.”
+
+**Why this satisfies the technique:**
+This wasn’t just a bug fix — I asked the AI to **evaluate why one approach (left=right) failed** and to contrast it with a better one. That’s an evaluation of *different parsing approaches* (how user question parsing mapped vs how it should).
+
+---
