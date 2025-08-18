@@ -1,0 +1,152 @@
+Here are the 3 strong examples for Before/After
+
+---
+
+## **Example 1: Yes/No + Weather Details (removing rain expectation)**
+
+### a) Initial AI-generated code
+
+Originally, AI made `parse_weather_question` return **three outputs**:
+
+1. yes/no
+2. rain expectation
+3. weather details
+
+### b) Fuki’s prompt
+
+> *“Can we omit 2. rain expectation? I only want 1. yes/no and 3. weather details.”*
+
+### c) Improved code
+
+AI rewrote `parse_weather_question` and the response generator so the output only contained **yes/no** and **weather details** — exactly as you requested.
+
+```python
+return {
+    "umbrella_needed": umbrella_needed,
+    "details": details
+}
+```
+
+### d) Why effective?
+
+Firstly, there was a code;
+-------------------------------------------
+return umbrella_needed, rain_expectation, details
+-------------------------------------------
+
+This was designed to return 3 values,
+while another code tried to unpack 2 variables;
+-------------------------------------------
+umbrella_needed, details = parse_weather_question(question)
+-------------------------------------------
+
+Left-hand side (variables to unpack) = 2
+Right-hand side (values returned) = 3
+This gap caused an error.
+
+So, the prompt to omit 'rain expectation' is effective to solve this gap and error.
+
+---
+
+## **Example 2: Adding ASCII Weather Icons**
+
+### a) Initial AI-generated code
+
+Cell 5 originally only printed plain text weather results like:
+
+```
+Umbrella needed: Yes
+Details: Light rain throughout the day
+```
+
+### b) Fuki’s prompt
+
+> *“Good. I want ASCII as well. Can you do a program, which also shows ASCII, with refining only cell 5?”*
+
+### c) Improved code
+
+AI modified only **Cell 5** to map weather conditions to ASCII art, e.g.:
+
+```python
+ascii_icons = {
+    "Clear": r"""
+      \   /     
+       .-.       
+    ― (   ) ―       
+       `-’               
+      /   \     
+    """,
+    "Cloudy": r"""
+       .--.    
+    .-(    ).  
+   (___.__)__) 
+    """,
+    "Rain": r"""
+       .-.      
+      (   ).    
+     (___(__)   
+      ‘ ‘ ‘ ‘   
+     ‘ ‘ ‘ ‘    
+    """
+}
+```
+
+And the console displayed both **text + ASCII icon** for clarity.
+
+### d) Why effective?
+
+This is because the ASCIIs made my console more beautiful.
+
+
+---
+
+## **Example 3: Fixing the Missing `parse_weather_question` Error**
+
+### a) Initial AI-generated code
+
+When introducing the “location-first” console, I called:
+
+```python
+parsed = parse_weather_question(question)
+```
+
+But AI hadn’t included the definition in the same code block.
+
+### b) Fuki’s prompt
+
+>Cosole is like the following. What is going on?
+
+Umbrella Assistant (WeatherWrapper) — location first
+
+Enter a location (City or Country): Perth
+
+Ask your umbrella question (e.g., 'Do I need an umbrella tomorrow?')
+(Press Enter with no text to exit)
+> Do I need an umbrella tomorrow?
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+...
+NameError: name 'parse_weather_question' is not defined
+
+
+
+### c) Improved code
+
+I provided a new **Cell 4** that properly defined `parse_weather_question` inside the notebook:
+
+```python
+def parse_weather_question(question):
+    text = question.lower()
+    if "umbrella" in text or "rain" in text:
+        return {"umbrella_needed": "Yes", "details": "Rain expected"}
+    else:
+        return {"umbrella_needed": "No", "details": "No rain mentioned"}
+```
+
+### d) Why effective?
+
+My prompt showed the error as it was, made an AI think the reason of an error.
+Then I got AI's answer and suggestion, and considered whether to adopt it.
+
+---
+
